@@ -59,6 +59,11 @@ public class Principal extends javax.swing.JFrame {
                 txtNumeroUnoActionPerformed(evt);
             }
         });
+        txtNumeroUno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroUnoKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtNumeroUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 70, -1));
 
         jLabel3.setText("Numero Dos :");
@@ -67,6 +72,11 @@ public class Principal extends javax.swing.JFrame {
         txtNumeroDos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNumeroDosActionPerformed(evt);
+            }
+        });
+        txtNumeroDos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroDosKeyTyped(evt);
             }
         });
         jPanel1.add(txtNumeroDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 70, -1));
@@ -128,7 +138,8 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNumeroUnoActionPerformed
 
     private void txtNumeroDosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroDosActionPerformed
-        // TODO add your handling code here:
+         
+          
     }//GEN-LAST:event_txtNumeroDosActionPerformed
 
     private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
@@ -142,6 +153,7 @@ public class Principal extends javax.swing.JFrame {
         }else if(txtNumeroDos.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(this,"Digite el numero dos","Error", JOptionPane.ERROR_MESSAGE);
             txtNumeroDos.requestFocusInWindow();
+        }else {
         
             
         }
@@ -151,6 +163,12 @@ public class Principal extends javax.swing.JFrame {
         n2 = Double.parseDouble(txtNumeroDos.getText());
         op = cmbOperacion.getSelectedIndex();
         
+        if(op == 3 && n2 == 0){
+            JOptionPane.showMessageDialog(this,"Digite el cero en el segundo nuemro","Error", JOptionPane.ERROR_MESSAGE);
+            txtNumeroDos.requestFocusInWindow();
+            txtNumeroDos.selectAll();
+        }else{
+            
         switch(op){
             case 0:
                 resultado = n1 + n2;
@@ -169,6 +187,8 @@ public class Principal extends javax.swing.JFrame {
 
         res = String.valueOf(resultado);
         txtResultado.setText(res);
+        }
+    
     }//GEN-LAST:event_cmdCalcularActionPerformed
 
     private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
@@ -187,6 +207,22 @@ public class Principal extends javax.swing.JFrame {
     private void cmbOperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOperacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbOperacionActionPerformed
+
+    private void txtNumeroUnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroUnoKeyTyped
+       char c=evt.getKeyChar(); 
+          if(!Character.isDigit(c)) { 
+              getToolkit().beep(); 
+              evt.consume();   
+          } 
+    }//GEN-LAST:event_txtNumeroUnoKeyTyped
+
+    private void txtNumeroDosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroDosKeyTyped
+        char c=evt.getKeyChar();
+          if(!Character.isDigit(c)) { 
+              getToolkit().beep(); 
+              evt.consume(); 
+          }
+    }//GEN-LAST:event_txtNumeroDosKeyTyped
 
     /**
      * @param args the command line arguments
