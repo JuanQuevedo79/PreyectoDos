@@ -145,7 +145,7 @@ public class Principal extends javax.swing.JFrame {
     private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
         String res;
         double n1, n2, resultado=0;
-        int op;
+        int sw=0, op;
         
         if (txtNumeroUno.getText().isEmpty()){
             JOptionPane.showMessageDialog(this,"Digite el numero uno","Error",JOptionPane.ERROR_MESSAGE);
@@ -153,9 +153,26 @@ public class Principal extends javax.swing.JFrame {
         }else if(txtNumeroDos.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(this,"Digite el numero dos","Error", JOptionPane.ERROR_MESSAGE);
             txtNumeroDos.requestFocusInWindow();
+            sw= 0;
         }else {
         
-            
+        try{
+           Double.parseDouble((txtNumeroUno.getText()));
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "El primer numero debe ser un numero valido", "Error", JOptionPane.ERROR_MESSAGE);
+            txtNumeroUno.requestFocusInWindow();
+            txtNumeroUno.selectAll();
+            sw=0;
+        }
+         try{       
+         Double.parseDouble((txtNumeroDos.getText()));
+        } catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "El Segundo numero debe ser un numero valido", "Error", JOptionPane.ERROR_MESSAGE);
+            txtNumeroDos.requestFocusInWindow();
+            txtNumeroDos.selectAll();
+            sw=0;       
+        }
+    
         }
         
         
